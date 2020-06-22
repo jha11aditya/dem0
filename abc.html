@@ -1,0 +1,46 @@
+<html>
+
+<form action="loginSQL.php" method="post">
+
+  SQL password_:
+  <input type="text" name="sqlp" >
+  <br>
+<input type="submit" name="goin" value="submit">
+</form>
+
+<iframe src='//google.com'></iframe>
+
+
+<?php
+session_start();
+
+if(isset($_GET['code'])) {
+echo "got code\n";
+echo $_GET['code'];
+}
+
+
+if(isset($_POST['goin']))
+{
+echo "chking";
+$sqlpass = $_POST['sqlp'];
+//$conc = mysqli_connect("localhost","$naam","$sqlpass");
+
+if(mysqli_connect("localhost","root","$sqlpass"))
+{//echo $naam,$sqlpass;
+$_SESSION['loggedin'] = 1;
+header("Location: http://localhost//iitdh/lib.php");
+
+$_SESSION['credp'] =$sqlpass;
+
+}
+else {echo"invalid password";}
+
+}
+?>
+
+
+
+
+
+</html>
